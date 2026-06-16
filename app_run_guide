@@ -1,0 +1,224 @@
+#required dependency are mentioned in requirements.txt 
+
+#i dived the codebase in data folder, the ml folder , the frontend folder 
+
+#at the runtime ....
+#INSTRUCTYION TO HOW TO RUN THE CODE 
+
+#install /download /clone the git repo 
+inside finance_modeling/src/frontend
+
+run cmd: streamlit run app.py 
+_______________________________________________
+
+THE DETAILED GUIDE HOW I CONSTRUCTED THE CODEBASE 
+
+1> First , created the data folder , 
+inside the data folder created 
+processed/datasets
+processed/plots_summary
+
+created raw/
+inside the raw folder stored European_Bank.csv
+
+
+>the code flow
+
+>src/ml
+
+1. dataloaderService/dataingestion.ipynb
+input: European_Bank.csv 
+output: datafinance_v1.1.csv
+
+
+*datatype crossvalidation 
+*# #ANALYSED FACTS!
+# 1. AGE RANGE 18 TO 92 / 38 MEAN
+# 2. AVG TENURE THE CUSTOMER PREFER IS 5 , MAX GOES TO 10 YRS 
+# 3. MAX BALANCE/ACC IS $250898.090000 , AVG ACTBALANCE AMT $76485.889288
+# 4. MIN PRODUCT RANGE FROM 1 TO MAX 4 . 
+# 70% HAS CARD 
+# 50% IS ACTIVEMEMBER
+# 20% EXCITED 
+# estimatesalary of customer (11.580000	,199992.480000	) avg:100090.239881
+# *** 25% of customers have 0 balance
+# **** year column can be dropped 
+    
+
+
+2. customerengagementclassification.ipynb 
+input: datafinance_v1.1.csv
+output: final_train_engineered_v2,final_test_engineered_v2,final_analytics_master_dataset.csv
+
+*created features balance_log,salary_log,product_norm,tenure_norm in scaling limits 
+*flag features to int32
+*salary_balance_flag,product_per_tenure
+-->balance bins :high, medium,zero balance 
+-->engagementscore=active_is,product_norm,balance,card,teutre
+
+-->one hot encoding for geography , gender to numeric 
+-->cluster the customer based on balance ,salary,product,tenure,eng_score used kmeans 
+--> inactive disengaged , inactive high balance , inactivelowbalance 
+active power core , active casual , 
+
+
+-->is active+ power_core platinum
+-->is not active,highbalance: high value 
+-->is inactive , low balance :medium val 
+-->low 
+
+customer segmented to platinum, high, medium, low value customer 
+
+clustered customer in 5 section
+
+
+
+
+
+
+
+
+
+
+3.financecustomersegmentation.ipynb 
+input : datafinance_v1.1.csv
+output: X_train_clustered.csv,X_train_engineered.csv
+
+
+4. productutilizationclassification.ipynb 
+
+input: final_analytics_master_dataset.csv
+output: final_churnfinance.csv
+
+-->calculated total exited customer ,%churn,overallretention
+--->churn on basis of exited
+--->churn on basis of is active or inactive 
+--->churn by balance_category
+
+@created product segmentation 1,2,3,4 product bins 
+
+@single product customer count,churnrate,retentionrate vs multiproduct customers 
+
+@This function is inferring (guessing) a customer's product mix from available banking features because the dataset does not explicitly contain product names.
+@retention rate =100-churn 
+
+
+Active_Product_Count
+
+product_utilization=activeproduct_count/noofproducts 
+
+Normalized Score	Segment
+0 – 33	Low Depth
+>33 – 66	Medium Depth
+>66 – 100	High Depth
+
+
+
+assignment of risk segment for each customer classification
+
+--> if balance is high n its not active:silent risk /n high probability the customer will leave 
+
+--> if there is only 1 product , is active , tenure>3
+means customer high engaged , single product ,with chances of moderate stickness in product 
+
+--> no of products are more than 1 n is not active :
+multiple product , the customer is not active , need to paqy attention else it will leave
+
+
+--> no of prodcutsw more than 2 iscative 
+loyal 
+
+@as the rule segment the customer in relevant bins 
+
+ 
+
+
+5. financecommitmentmap.ipynb 
+
+input:final_churnfinance.csv
+output:financecommitmentmap.csv
+
+
+
+*finance_commitment_score=balance/salary_balance_ratio/numofproducts/prouct_utiliationratio
+*customer_satisfaction_score=eng_score/isactive/product_utilization/activity_product_interaction=noofproducts*active_flag
+*switchcost=tenure/numofproducts/hascard/activeprodctcnt
+*loyaltyratio tenure/engscore/isactive
+*relationship intensity score=noofproduct/eng/utilization
+
+* is_premium=if balance is high , no of product high , customer value seg is also high 
+
+* else all fall under standard portfolio
+@if person is active n loyal both:premium loyal
+@if person is moderate active
+@if person is inactive n is dormant_health : critical premium 
+@at risk 
+
+
+
+
+
+
+6. retentionstrengthAnalyser.ipynb 
+
+input:financecommitmentmap.csv
+output:enriched_final_dataset_finance.csv
+-->retention_score :0 to 100
+-->satisfaction level ,satisfaction_score is upto 10 
+--->switch :how ready is customer to leave the bank 
+--->product_cmp=product adoption depth 
+--->retentionscore =satisfied score/switch score/product_cmp score 
+
+retention score 
+
+0-6:detractor
+7-8:passive 
+9-10:promoter 
+
+
+split customers into engagement tiers :bottom, medium, high 
+
+
+Estimate Customer Lifetime Value= salry /loyal(1 to 0) tobank/tenure()
+
+Field	Business Question
+Retention_Score	How likely is the customer to stay?
+NPS_Segment	How satisfied is the customer?
+Stickiness_Index	How difficult is it for the customer to leave?
+Is_Sticky_Customer	Is this a loyal customer?
+Engagement_Level	How engaged is the customer?
+Estimated_CLV	What is the customer's long-term value?
+Product_Penetration_Rate	How many products has the customer adopted?
+
+
+
+
+
+
+
+
+
+
+
+7.app.py 
+in the app.py used the final file build 
+`enriched_final_dataset_finance.csv` 
+
+in app.py created main page n referred to four dashboard 
+1.render_engagement_overview
+2.render_product_analysis 
+3.render_high_value_detector
+4.render_retention_panel
+
+
+8. created dashboard files 
+in frontend/components/
+
+-->engagement_overview.py
+-->high_value_detector.py
+-->product_analysis.py
+-->retention_panel.py 
+
+
+
+

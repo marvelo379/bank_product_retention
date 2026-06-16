@@ -1,0 +1,97 @@
+ Customer Engagement & Retention Dashboard
+
+ 1.  Engagement vs Churn Analysis
+
+ >Total 10000 customers are there 
+ >20% is churned customer data in dataset 
+ >51.5% are the active customers out of total 10,000
+
+ the engagement score is bimodal ,there are two phases where escore=0.3 n 0.7 the count of customeres are max
+result:bipoloar behaviour reflected 
+
+ 2.inactive_disengaed customer have lowest churn rate /maximm retention rate 
+
+ inactive_disengaged<inactive_low_balance<active_power_core<active_casual<inactive_high_balance
+
+
+ 3. IN FUTURE 
+
+ silent risk upto 30% customers will silently leave the banking platform 
+
+ silentrisk customer30%>cross-sell customer (18%)>retention focus(15%)>loyal customers (9%)
+
+>>> so u need to reform the marketing bank product campaing for silent risk 30%
+
+maximum no of candidate fall under low value balance >high>platinum>medium 
+
+high balance customer are seen to leave the bank service with max probability than platinum 
+
+low value customer have max retention rate 
+
+
+bank has maximum % of loyal customers > growth opportunity>weak relationship >hinden churn 
+hidden churn customers are 28% 
+
+
+in  bank customer with 
+> low salary n high balance 
+> high salary n high balance 
+means saving oriented n financially committed customers are maximum 
+
+>there are less customeres with high salary low balance  riskcustomer! n standard retail customers 
+
+
+
+out of total customers 37% are zero balance , 39 % medium balance , 25 % high balance 
+
+
+dormanth wealth cluster 
+
+
+_______________________________________________________________________
+
+avg product utilization =89%
+
+> customer with max no of product subscribed has maximal churn rate 
+> customer with 2 product has minimal churn rate 
+ product_2>product_1>product_3>product_4 , product_2 max retention 
+
+
+
+at present there are active multiproduct 12 % customers and single product is 28%
+out of total customers 27% are multi product , 73% single product customers 
+
+loyalty at risk customer /as per tenure are 197 customer with less than 3 year as tenure 
+--->loyalty customer need this regular check 
+
+-->estimatede clvEstimated Customer Lifetime Value (CLV) is the projected total revenue or net profit a business expects to generate from a single customer throughout their entire relationship
+
+0 to 500k 
+max are in range of 320000
+
+
+-------------------------------
+
+>in dataset , 1 draw back only two datapoints are given for noof products =4 , the dataset is biased need more data with customer with 4 products 
+to get to valid conclusion 
+
+
+----------------------------------------
+retention strength :
+
+engaging or well active customers of bank are 30%
+loyal customers are 25% with least retention rate 
+satisfaction score 15%
+switch cost 10%
+
+
+low risk customer : 27%
+medium: 13%
+high health customer :13% 
+elite healtj:52%
+
+retention score depends max on eng_score
+eng_score>loyalty>relationintensityscore>customer satisfaction score >switching cost index 
+
+
+top 20% riswky customer listids
