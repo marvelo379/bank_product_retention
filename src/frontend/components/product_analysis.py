@@ -48,7 +48,10 @@ def render_product_analysis(df):
     with kpi2:
         st.metric("Average Churn Rate", f"{avg_churn:.1%}")
     with kpi3:
-        st.metric("Avg Product Utilization", f"{avg_utilization:.2f}")
+        st.metric(
+        "Avg Product Utilization",
+        f"{avg_utilization * 100:.2f}%"
+    )
 
     st.write("---")
 
